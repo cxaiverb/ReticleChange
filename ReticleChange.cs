@@ -172,6 +172,19 @@ namespace ReticleChange
             SpriteStorage.Add(filename, sprite);
             return sprite;
         }
-        //stores the sprites
+
+        public override void OnUpdate()
+        {
+            var Mouse = GameObject.Find("_Application/CursorManager/MouseArrow/VRCUICursorIcon/");
+            var MouseDisable = Mouse.GetComponent<SpriteRenderer>();
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                MouseDisable.enabled = false;
+            }
+            else
+            {
+                MouseDisable.enabled = true;
+            }
+        }
     }
 }
