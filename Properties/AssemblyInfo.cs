@@ -15,7 +15,7 @@ using ReticleChange;
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: MelonInfo(typeof(ReticleChange.ReticleChange), "ReticleChange", "1.0.1", "xaiver")]
+[assembly: MelonInfo(typeof(ReticleChange.ReticleChange), "ReticleChange", "1.0.2", "xaiver")]
 [assembly: MelonGame("VRChat", "VRChat")]
 
 // Setting ComVisible to false makes the types in this assembly not visible

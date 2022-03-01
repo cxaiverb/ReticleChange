@@ -19,6 +19,7 @@ namespace ReticleChange
         private Sprite SelectedSprite;
         private FileSystemWatcher watcher;
         private List<(string, string)> StringEnum = new List<(string, string)>();
+        private SpriteRenderer MouseDisable;
 
 
         public IEnumerator WaitForUIMan()
@@ -34,6 +35,8 @@ namespace ReticleChange
 
         private void ChangeReticle()
         {
+            var Mouse = GameObject.Find("_Application/CursorManager/MouseArrow/VRCUICursorIcon/");
+            MouseDisable = Mouse.GetComponent<SpriteRenderer>();
             if (SelectedSprite == null)
             {
                 return;
@@ -60,7 +63,6 @@ namespace ReticleChange
             ReticleChanger = MelonPreferences.CreateCategory("ReticleChanger");
             ReticleSelection = ReticleChanger.CreateEntry<string>("ReticleSelection", "", "Selected Reticle");
             Directory.CreateDirectory("UserData/ReticleChange");
-
             foreach (string filename in Directory.GetFiles("UserData/ReticleChange/", "*.png"))
             {
                 var FileInfo = new FileInfo(filename);
@@ -175,8 +177,14 @@ namespace ReticleChange
 
         public override void OnUpdate()
         {
-            var Mouse = GameObject.Find("_Application/CursorManager/MouseArrow/VRCUICursorIcon/");
-            var MouseDisable = Mouse.GetComponent<SpriteRenderer>();
+            if (MouseDisable == null)
+            {
+                return;
+            }
+            if (XRDevice.isPresent == true)
+            {
+                return;
+            }
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 MouseDisable.enabled = false;
