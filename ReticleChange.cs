@@ -42,10 +42,16 @@ namespace ReticleChange
                 return;
             }
             //gets the location of the reticle and replaces it
-            var Reticle = GameObject.Find("UserInterface/UnscaledUI/HudContent/Hud/ReticleParent/Reticle");
+            var Reticle = GameObject.Find("UserInterface/UnscaledUI/HudContent_Old/Hud/ReticleParent/Reticle");
             var ReticleImage = Reticle.GetComponent<Image>();
             ReticleImage.sprite = SelectedSprite;
             ReticleImage.overrideSprite = SelectedSprite;
+
+            /*color of bigmenu
+            var BigBackground = GameObject.Find("UserInterface/MenuContent/Backdrop/Backdrop/Background");
+            var BackgroundColor = BigBackground.GetComponent<Graphic>();
+            Vector4 newV4 = new Color(1f, 0f, 1f, 0.5f);
+            BackgroundColor.color = newV4;*/
         }
 
         private void RefreshStringEnum()
@@ -68,7 +74,7 @@ namespace ReticleChange
                 var FileInfo = new FileInfo(filename);
                 GetSprite(FileInfo.Name);
             }
-
+            
             RefreshStringEnum();
             ExpansionKitApi.RegisterSettingAsStringEnum("ReticleChanger", "ReticleSelection", StringEnum);
             ReticleSelection.OnValueChanged += ReticleSelection_OnValueChanged;
